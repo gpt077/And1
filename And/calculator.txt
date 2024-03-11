@@ -1,0 +1,128 @@
+ activity_main.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="20dp"
+    android:fitsSystemWindows="true"
+    tools:context=".MainActivity"
+    android:orientation="vertical" >
+    
+
+    <EditText
+        android:id="@+id/eta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="Enter a" />
+
+    <EditText
+        android:id="@+id/etb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="Enter b" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btnadd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="add" />
+
+        <Button
+            android:id="@+id/btnsub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="sub" />
+
+        <Button
+            android:id="@+id/btnmul"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="mul" />
+        <Button
+            android:id="@+id/btndiv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="div"
+            />
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv"
+        android:layout_margin="20dp"
+        android:text="Result"/>
+</LinearLayout>
+
+package com.example.mycal
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.view.View
+import android.view.View.OnClickListener
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+
+class MainActivity : AppCompatActivity(), View.OnClickListener {
+
+    lateinit var btnadd: Button
+    lateinit var btnsub: Button
+    lateinit var btnmul: Button
+    lateinit var btndiv: Button
+    lateinit var eta: EditText
+    lateinit var etb: EditText
+    lateinit var rv: TextView
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        btnadd=findViewById(R.id.btnadd)
+        btnsub=findViewById(R.id.btnsub)
+        btnmul=findViewById(R.id.btnmul)
+        btndiv=findViewById(R.id.btndiv)
+        eta=findViewById(R.id.eta)
+        etb = findViewById(R.id.etb)
+        rv = findViewById(R.id.rv)
+
+        btnadd.setOnClickListener(this)
+        btnsub.setOnClickListener(this)
+        btnmul.setOnClickListener(this)
+        btndiv.setOnClickListener(this)
+
+    }
+
+    override fun onClick(v: View?) {
+        var a = eta.text.toString().toDouble()
+        var b = etb.text.toString().toDouble()
+        var result=0.0
+        when(v?.id)
+        {
+            R.id.btnadd -> {
+                result = a+b
+            }
+            R.id.btnsub -> {
+                result = a-b
+            }
+            R.id.btnmul -> {
+                result = a*b
+            }
+            R.id.btndiv -> {
+                result = a/b
+            }
+
+        }
+        rv.text = "Result is $result"
+    }
+}

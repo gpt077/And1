@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<!-- Relative Layout to display all the details -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/relLayout"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="#fff"
+	android:padding="16dp"
+	tools:context=".MainActivity"> 
+
+	<TextView
+		android:id="@+id/textView"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_centerHorizontal="true"
+		android:layout_marginTop="20dp"
+		android:text="Long press me!"
+		android:textColor="#000"
+		android:textSize="20sp"
+		android:textStyle="bold" /> 
+</RelativeLayout>
+
+MainActivity.kt
+import android.graphics.Color 
+import android.os.Bundle 
+import android.view.ContextMenu 
+import android.view.ContextMenu.ContextMenuInfo 
+import android.view.MenuItem 
+import android.view.View 
+import android.widget.RelativeLayout 
+import android.widget.TextView 
+import androidx.appcompat.app.AppCompatActivity 
+
+class MainActivity : AppCompatActivity() { 
+	lateinit var textView: TextView 
+	lateinit var relativeLayout: RelativeLayout 
+	
+	override fun onCreate(savedInstanceState: Bundle?) { 
+		super.onCreate(savedInstanceState) 
+		setContentView(R.layout.activity_main) 
+
+		// Link those objects with their respective id's that we have given in .XML file 
+		textView = findViewById(R.id.textView) 
+		relativeLayout = findViewById(R.id.relLayout) 
+		registerForContextMenu(textView) 
+	} 
+
+	override fun onCreateContextMenu(menu: ContextMenu, v: View, menuInfo: ContextMenuInfo) { 
+		super.onCreateContextMenu(menu, v, menuInfo) 
+		
+		menu.setHeaderTitle("Choose a color") 
+		menu.add(0, v.id, 0, "Yellow") 
+		menu.add(0, v.id, 0, "Gray") 
+		menu.add(0, v.id, 0, "Cyan") 
+	} 
+
+	// menu item select listener 
+	override fun onContextItemSelected(item: MenuItem): Boolean { 
+		if (item.title === "Yellow") { 
+		relativeLayout.setBackgroundColor(Color.YELLOW) 
+		} else if (item.title === "Gray") { 
+			relativeLayout.setBackgroundColor(Color.GRAY) 
+		} else if (item.title === "Cyan") { 
+			relativeLayout.setBackgroundColor(Color.CYAN) 
+		} 
+		return true
+	} 
+}

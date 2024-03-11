@@ -1,0 +1,21 @@
+Pract 1
+Kotlin demonstration
+For loop, when demo, even-odd, prime not prime, greater of two numbers, OOP demo, positive negative, Leap Year, Operators in kotlin, do-while.
+
+Pract 2 (Print out)
+ Design calculator using kotlin in Android Studio
+
+Pract 3
+ Design Login Form using Toast
+
+Pract 4
+ Design a Menu for a Cafe and Print its Invoice
+
+Pract 5 
+ Design a menu tree to change background color
+
+Pract 6
+Add Image of your choice/ adding Logo to your Project
+
+Pract 7
+starting Camera Module and taking Picture.
